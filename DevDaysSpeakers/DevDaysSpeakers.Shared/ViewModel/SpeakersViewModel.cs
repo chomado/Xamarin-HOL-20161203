@@ -58,19 +58,12 @@ namespace DevDaysSpeakers.ViewModel
 			{
 				IsBusy = true;
 
-				using (var client = new HttpClient())
-				{
-					//サーバーから json を取得します
-					var json = await client.GetStringAsync("http://demo4404797.mockable.io/speakers");
+				var service = DependencyService.Get<AzureService>();
+				var items = await service.GetSpeakers();
 
-					//json をデシリアライズします
-					var items = JsonConvert.DeserializeObject<List<Speaker>>(json);
-
-					//リストを Speakers に読み込ませます
-					Speakers.Clear();
-					foreach (var item in items)
-						Speakers.Add(item);
-				}
+				Speakers.Clear();
+				foreach (var item in items)
+					Speakers.Add(item);
 			}
 			catch (Exception ex)
 			{
