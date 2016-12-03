@@ -16,7 +16,28 @@ using System.Runtime.CompilerServices;
 
 namespace DevDaysSpeakers.ViewModel
 {
-    public class SpeakersViewModel
-    {
-    }
+	public class SpeakersViewModel : INotifyPropertyChanged
+	{
+		public ObservableCollection<Speaker> Speakers { get; set; }
+		public SpeakersViewModel() 
+		{
+			Speakers = new ObservableCollection<Speaker>();
+		}
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		void OnPropertyChanged([CallerMemberName] string name = null) =>
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+
+		bool busy;
+		public bool IsBusy
+		{ 
+			get { return busy; }
+			set {
+				busy = value;
+				OnPropertyChanged();
+			}
+		}
+
+	}
 }
