@@ -14,6 +14,7 @@
 
 			<Button Text="読み上げる" x:Name="ButtonSpeak"/>
 			<Button Text="ウェブサイトに移動" x:Name="ButtonWebsite"/>
+			<Button Text="Emotion" x:Name="ButtonAnalyze"/>
 		</StackLayout>    
 	</ScrollView>
 </ContentPage>
